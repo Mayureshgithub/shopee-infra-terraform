@@ -1,32 +1,5 @@
-##Create a bucket to upload your static data like images
-resource "aws_s3_bucket" "demonewbucket12345" {
-  bucket = "devops-mfa-app5"
-  acl    = "public-read-write"
- # region = "us-east-1"
-  
-  versioning {
-    enabled = true
-  }
 
-  tags = {
-    Name = "devops-mfa-app5"
-    Environment = "Prod"
-  }
-}
-#Allow public access to the bucket
-resource "aws_s3_bucket_public_access_block" "public_storage" {
- depends_on = [aws_s3_bucket.demonewbucket12345]
- bucket = "devops-mfa-app5"
- block_public_acls = false
- block_public_policy = false
-}
 
-# resource "aws_s3_bucket_object" "Object1" {
-#   depends_on = [aws_s3_bucket.demonewbucket12345]
-#   bucket = "devops-mfa-app5"
-#   acl    = "public-read-write"
-  
-# }
 locals {
   s3_origin_id = "myS3Origin"
 }
